@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-export const SplashScreen = () => {
+export const CustomSplashScreen = () => {
   return (
     <View style={styles.splashscreen}>
       <Text style={styles.text}>Weather App</Text>

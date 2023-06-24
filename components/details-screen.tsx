@@ -1,10 +1,9 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-export function HomeScreen() {
+export function DetailsScreen() {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text>Details Screen</Text>
     </View>
   );
 }

@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
-import { SplashScreen } from "./components/splash-screen";
-import { Suspense, useEffect, useState } from "react";
+import { CustomSplashScreen } from "./components/splash-screen";
+import { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { DetailsScreen } from "./components/details-screen";
 import { HomeScreen } from "./components/home-screen";
 
 const Stack = createNativeStackNavigator();
@@ -18,20 +19,15 @@ export default function App() {
     return () => clearTimeout(timeout);
   }, []);
 
+  if (!showContent) return <CustomSplashScreen />;
+
   return (
-    <Suspense fallback={<SplashScreen />}>
-      {showContent ? (
-        <NavigationContainer>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ title: "Welcome" }}
-          />
-        </NavigationContainer>
-      ) : (
-        <SplashScreen />
-      )}
-    </Suspense>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
