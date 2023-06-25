@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface CityRendererProps {
   city: City;
-  onRemove: (id: number) => void;
+  onRemove: (id: string) => void;
   onPress: (city: City) => void;
 }
 
