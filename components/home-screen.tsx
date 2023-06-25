@@ -11,29 +11,34 @@ import { City } from "../types";
 import { CityRenderer } from "./cityRenderer";
 import "react-native-get-random-values";
 import { v4 as uuid } from "uuid";
+import { useLocalStorageState } from "../hooks/use-async-storage-state";
 
 export function HomeScreen({ navigation }) {
   const [cityName, setCityName] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const apiKey = "a37c89ea6fbc1f0b0f4a2108870bb976";
-  const [defaultCities, setDefaultCities] = useState<City[]>([
-    {
-      id: uuid(),
-      name: "London",
-    },
-    {
-      id: uuid(),
-      name: "Paris",
-    },
-    {
-      id: uuid(),
-      name: "New York",
-    },
-    {
-      id: uuid(),
-      name: "Tokyo",
-    },
-  ]);
+  const [defaultCities, setDefaultCities] = useLocalStorageState(
+    "defaultcities",
+    [
+      {
+        id: uuid(),
+        name: "Angers",
+      },
+      {
+        id: uuid(),
+        name: "Paris",
+      },
+      {
+        id: uuid(),
+        name: "New York",
+      },
+      {
+        id: uuid(),
+        name: "Tokyo",
+      },
+    ]
+  ) as unknown as [City[], (value: City[]) => void];
+
   const addToFavorites = () => {
     setDefaultCities([...defaultCities, { id: uuid(), name: cityName }]);
   };
