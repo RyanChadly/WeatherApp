@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-export function DetailsScreen() {
+export function DetailsScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
       <Text>Details Screen</Text>
     </View>
   );
