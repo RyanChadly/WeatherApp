@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Pressable } from "react-native";
-import { City } from "../types";
+import { City } from "../../types";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface CityRendererProps {
@@ -26,6 +26,7 @@ export const CityRenderer = ({
       <Text style={styles.text}>{city.name}</Text>
 
       <Icon
+        testID="remove-icon"
         onPress={() => onRemove(city.id)}
         name="delete-outline"
         size={20}

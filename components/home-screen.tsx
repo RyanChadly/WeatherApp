@@ -8,7 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { City } from "../types";
-import { CityRenderer } from "./cityRenderer";
+import { CityRenderer } from "./cityRenderer/cityRenderer";
 import "react-native-get-random-values";
 import { v4 as uuid } from "uuid";
 import { useLocalStorageState } from "../hooks/use-async-storage-state";
