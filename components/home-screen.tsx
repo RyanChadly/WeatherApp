@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -15,6 +15,7 @@ import { useLocalStorageState } from "../hooks/use-async-storage-state";
 
 export function HomeScreen({ navigation }) {
   const [cityName, setCityName] = useState("");
+  // this is a free api key, I'd normally use a gitignored file to store it
   const apiKey = "a37c89ea6fbc1f0b0f4a2108870bb976";
   const [defaultCities, setDefaultCities] = useLocalStorageState(
     "defaultcities",
@@ -37,10 +38,12 @@ export function HomeScreen({ navigation }) {
       },
     ]
   ) as unknown as [City[], (value: City[]) => void];
+
   const addToFavorites = (cityName: string) => () => {
     setDefaultCities([...defaultCities, { id: uuid(), name: cityName }]);
   };
-  const fetchWeatherData = async () => {
+
+  const fetchWeatherData = useCallback(async () => {
     try {
       if (!cityName) throw new Error("City name is required.");
       const response = await fetch(
@@ -60,11 +63,12 @@ export function HomeScreen({ navigation }) {
         { text: "OK", onPress: () => setCityName("") },
       ]);
     }
-  };
+  }, [cityName]);
 
   const handlePress = (city: City) => {
     setCityName(city.name);
   };
+
   const handleRemove = (id: string) => {
     setDefaultCities(defaultCities.filter((city) => city.id !== id));
   };
