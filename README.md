@@ -1,6 +1,6 @@
 # WeatherApp
 This is a react Native app that lets choose from which city you can get the current weather.
-You can keep a list of favorite cities, they will be store in asynchronous storage.
+You can keep a list of favorite cities, they will be stored in asynchronous storage.
 This was only tested on IOS with Xcode emulator or on an iphone by scanning qr code ( I am using Expo )
 
 
