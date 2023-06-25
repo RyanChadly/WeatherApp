@@ -15,7 +15,6 @@ import { useLocalStorageState } from "../hooks/use-async-storage-state";
 
 export function HomeScreen({ navigation }) {
   const [cityName, setCityName] = useState("");
-  const [weatherData, setWeatherData] = useState(null);
   const apiKey = "a37c89ea6fbc1f0b0f4a2108870bb976";
   const [defaultCities, setDefaultCities] = useLocalStorageState(
     "defaultcities",
@@ -55,8 +54,7 @@ export function HomeScreen({ navigation }) {
         }
       });
       const data = await response.json();
-      setWeatherData(data);
-      setCityName("");
+
       navigation.navigate("Details", { weatherData: data, addToFavorites });
     } catch (error) {
       Alert.alert("Error", error.message, [
@@ -106,5 +104,3 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 });
-
-// https://api.openweathermap.org/data/2.5/weather?id={city id}&appid={API key}
