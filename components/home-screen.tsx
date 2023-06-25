@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Button, Text } from "react-native";
+import { View, StyleSheet, TextInput, Button, Text, Alert } from "react-native";
 
 export function HomeScreen() {
   const [cityName, setCityName] = useState("");
@@ -12,9 +12,11 @@ export function HomeScreen() {
         `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=a37c89ea6fbc1f0b0f4a2108870bb976`
       );
       const data = await response.json();
-      console.log(data);
       setWeatherData(data);
     } catch (error) {
+      Alert.alert("Error", error.message, [
+        { text: "OK", onPress: () => setCityName("") },
+      ]);
       console.error(error);
     }
   };
