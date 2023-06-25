@@ -39,6 +39,6 @@ export const isCityNotInFavorites = (
   cityName: string,
   defaultCities: City[]
 ) => {
-  if (!defaultCities) return false;
+  if (!defaultCities || defaultCities.length === 0) return false;
   return !defaultCities.some((city) => city.name === cityName);
 };
