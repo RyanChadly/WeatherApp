@@ -1,7 +1,7 @@
-import { CustomSplashScreen } from "./components/splash-screen";
 import { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Navigation } from "./components/navigation";
+import { Navigation } from "./components/navigation/navigation";
+import { CustomSplashScreen } from "./components/splashScreen/splash-screen";
 
 const Stack = createNativeStackNavigator();
 

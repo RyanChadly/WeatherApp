@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomSplashScreen should render the splash screen correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "darkslategrey",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "darkgrey",
+        "fontSize": 40,
+        "marginTop": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+    Weather App
+  </Text>
+  <Text />
+  <ActivityIndicator
+    size="large"
+    style={
+      {
+        "marginTop": 100,
+      }
+    }
+  />
+</View>
+`;
