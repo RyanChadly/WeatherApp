@@ -37,8 +37,7 @@ export function HomeScreen({ navigation }) {
       },
     ]
   ) as unknown as [City[], (value: City[]) => void];
-
-  const addToFavorites = () => {
+  const addToFavorites = (cityName: string) => () => {
     setDefaultCities([...defaultCities, { id: uuid(), name: cityName }]);
   };
   const fetchWeatherData = async () => {
