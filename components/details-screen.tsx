@@ -1,5 +1,6 @@
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import { useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 export function DetailsScreen({ route }) {
@@ -8,9 +9,9 @@ export function DetailsScreen({ route }) {
   const { addToFavorites } = route.params;
   const { weatherData } = route.params;
 
-  useEffect(() => {
+  useFocusEffect(() => {
     favorites.getItem().then((value) => setDefaultCities(JSON.parse(value)));
-  }, []);
+  });
 
   const temperatureIcon = () => {
     if (weatherData.main.temp > 25) {
