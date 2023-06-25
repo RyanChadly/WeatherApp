@@ -22,7 +22,7 @@ export function HomeScreen({ navigation }) {
     [
       {
         id: uuid(),
-        name: "Angers",
+        name: "Warsaw",
       },
       {
         id: uuid(),
@@ -43,7 +43,7 @@ export function HomeScreen({ navigation }) {
     setDefaultCities([...defaultCities, { id: uuid(), name: cityName }]);
   };
 
-  const fetchWeatherData = useCallback(async () => {
+  const fetchWeatherData = async () => {
     try {
       if (!cityName) throw new Error("City name is required.");
       const response = await fetch(
@@ -63,7 +63,7 @@ export function HomeScreen({ navigation }) {
         { text: "OK", onPress: () => setCityName("") },
       ]);
     }
-  }, [cityName]);
+  };
 
   const handlePress = (city: City) => {
     setCityName(city.name);
