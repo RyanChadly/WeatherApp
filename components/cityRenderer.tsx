@@ -1,17 +1,36 @@
-import { View, StyleSheet, Text, Button } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
 import { City } from "../types";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface CityRendererProps {
   city: City;
   onRemove: (id: number) => void;
+  onPress: (city: City) => void;
 }
 
-export const CityRenderer = ({ city, onRemove }: CityRendererProps) => {
+export const CityRenderer = ({
+  city,
+  onRemove,
+  onPress,
+}: CityRendererProps) => {
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={({ pressed }) => [
+        {
+          backgroundColor: pressed ? "rgb(210, 230, 255)" : "white",
+        },
+        styles.container,
+      ]}
+    >
       <Text style={styles.text}>{city.name}</Text>
-      <Button title="" onPress={() => onRemove(city.id)} />
-    </View>
+
+      <Icon
+        onPress={() => onRemove(city.id)}
+        name="delete-outline"
+        size={20}
+        color="#0000FF"
+      />
+    </Pressable>
   );
 };
 
@@ -21,7 +40,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#fff",
     padding: 10,
     marginVertical: 5,
     marginHorizontal: 10,
