@@ -6,12 +6,7 @@ export const CustomSplashScreen = () => {
   return (
     <View style={styles.splashscreen}>
       <Text style={styles.text}>Weather App</Text>
-      <Icon
-        style={styles.icon}
-        name="sun-thermometer-outline"
-        size={50}
-        color="darkgrey"
-      />
+      <Icon style={styles.icon} size={50} name="sun-thermometer-outline" />
       <ActivityIndicator style={styles.activity} size="large" />
     </View>
   );
@@ -35,5 +30,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginTop: 20,
+    color: "darkgrey",
   },
 });
