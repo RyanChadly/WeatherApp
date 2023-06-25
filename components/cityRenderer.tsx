@@ -21,6 +21,7 @@ export const CityRenderer = ({
         },
         styles.container,
       ]}
+      onPress={() => onPress(city)}
     >
       <Text style={styles.text}>{city.name}</Text>
 

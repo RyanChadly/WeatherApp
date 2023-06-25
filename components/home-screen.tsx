@@ -1,10 +1,37 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Button, Text, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Alert,
+  FlatList,
+} from "react-native";
+import { City } from "../types";
+import { CityRenderer } from "./cityRenderer";
 
 export function HomeScreen({ navigation }) {
   const [cityName, setCityName] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const apiKey = "a37c89ea6fbc1f0b0f4a2108870bb976";
+  const [defaultCities, setDefaultCities] = useState<City[]>([
+    {
+      id: 1,
+      name: "London",
+    },
+    {
+      id: 2,
+      name: "Paris",
+    },
+    {
+      id: 3,
+      name: "New York",
+    },
+    {
+      id: 4,
+      name: "Tokyo",
+    },
+  ]);
 
   const fetchWeatherData = async () => {
     try {
@@ -28,6 +55,14 @@ export function HomeScreen({ navigation }) {
       ]);
     }
   };
+
+  const handlePress = (city: City) => {
+    setCityName(city.name);
+  };
+  const handleRemove = (id: number) => {
+    setDefaultCities(defaultCities.filter((city) => city.id !== id));
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -37,13 +72,16 @@ export function HomeScreen({ navigation }) {
         placeholder="Choose a city..."
       />
       <Button title="Get Weather" onPress={fetchWeatherData} />
-      {weatherData && (
-        <View>
-          <Text>City: {weatherData.name}</Text>
-          <Text>Temperature: {weatherData.main.temp}</Text>
-          <Text>Description: {weatherData.weather[0].description}</Text>
-        </View>
-      )}
+      <FlatList
+        renderItem={(city) => (
+          <CityRenderer
+            city={city.item}
+            onRemove={handleRemove}
+            onPress={handlePress}
+          />
+        )}
+        data={defaultCities}
+      />
     </View>
   );
 }
@@ -56,6 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 10,
     padding: 5,
+    borderRadius: 5,
   },
 });
 
